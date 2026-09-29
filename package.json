@@ -1,0 +1,10 @@
+{
+  "name": "supabase-drift-guard-demo",
+  "private": true,
+  "description": "Demo project for supabase-drift-guard: CI fails when live Supabase privileges drift from migrations.",
+  "license": "MIT",
+  "devDependencies": {
+    "supabase": "^2.118.0",
+    "supabase-drift-guard": "^1.1.1"
+  }
+}

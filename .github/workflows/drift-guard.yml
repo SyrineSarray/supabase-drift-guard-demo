@@ -1,0 +1,42 @@
+name: Grant Drift Check
+
+on:
+  pull_request:
+    paths:
+      - "supabase/**"
+      - "drift-guard.config.json"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/drift-guard.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "supabase/**"
+      - "drift-guard.config.json"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/drift-guard.yml"
+  # Drift usually comes from the dashboard, not from a PR, so check daily too.
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+
+jobs:
+  grant-drift:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: "npm"
+
+      - run: npm ci
+
+      - name: Run drift check
+        env:
+          REMOTE_DATABASE_URL: ${{ secrets.REMOTE_DATABASE_URL }}
+        run: npx supabase-drift-guard check .
