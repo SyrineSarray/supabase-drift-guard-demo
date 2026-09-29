@@ -10,7 +10,7 @@ on:
       - ".github/workflows/drift-guard.yml"
   push:
     branches:
-      - main
+      - master
     paths:
       - "supabase/**"
       - "drift-guard.config.json"

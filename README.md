@@ -6,7 +6,7 @@ A small Supabase project wired to [supabase-drift-guard](https://github.com/Syri
 
 ## What this shows
 
-The migrations in `supabase/migrations` declare exactly who can access what. The CI job rebuilds that expected state locally and compares it to the live project on every relevant PR, every push to `main`, and once a day.
+The migrations in `supabase/migrations` declare exactly who can access what. The CI job rebuilds that expected state locally and compares it to the live project on every relevant PR, every push to `master`, and once a day.
 
 - **Green run:** production matches the migrations. [link to green run]
 - **Red run:** someone ran this in the dashboard's SQL editor, without a migration:
